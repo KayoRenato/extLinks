@@ -29,7 +29,7 @@ def getExternalLinks(bs, excludeUrl):
   externalLinks = []
 
   #Encontra todos os links que começam com "http" e que não contenham o URL atual
-  for link in bs.find_all('a', href=re.compile('^(http|www)((?!'+excludeUrl+').)*$')):
+  for link in bs.find_all('a', href=re.compile('^(http|https|www)((?!'+excludeUrl+').)*$')):
     if link.attrs['href'] is not None:
       if link.attrs['href'] not in externalLinks:
         externalLinks.append(link.attrs['href'])
@@ -55,4 +55,4 @@ def followExternalOnly(startingSite):
   
   followExternalOnly(externalLink)
 
-followExternalOnly('http://oreilly.com')
+followExternalOnly('https://www.oreilly.com/')
